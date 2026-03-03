@@ -124,34 +124,32 @@ window.addEventListener('load', highlightNavigation);
 // ========================================
 // Hire me Button Scroll to Contact Section
 // ========================================
-function callAlert(message) {
-  alert(message, 3000);
-  window.alert = function (message, timeout = null) {
-    const alertBox = document.createElement('div');
-    const alertButton = document.createElement('button')
-    alertButton.innerText = 'OK';
-    alertBox.classList.add('alert');
-    //alertBox.setAttribute('style', 'position: fixed; top: 100px; left: 50 %; padding: 20px; border - radius: 10px; box - shadow: 0 10px 5px 0 #00000022; display: flex; flex - direction: column; border: 1px solid #333; transform: translateX(-50 %); ');
-    //alertButton.setAttribute('style', 'border: 1px solid #333; background: white; border - radius: 5px; padding: 5px; ');
-    alertBox.setAttribute(
-      'style', 'position: fixed; top: 100px; left: 50%; padding: 20px; border-radius: 10px; box-shadow: 0 10px 5px 0 #00000022; display: flex; flex-direction: column; border: 1px solid #333; transform: translateX(-50%);'
-    );
+function callAlert(message, timeout = null) {
+  // create overlay to center the alert and dim background
+  const overlay = document.createElement('div');
+  overlay.className = 'alert-overlay';
 
-    alertButton.setAttribute(
-      'style', 'border: 1px solid #333; background: white; border-radius: 5px; padding: 5px;'
-    );
+  const alertBox = document.createElement('div');
+  alertBox.className = 'alert-box';
+  alertBox.innerHTML = `<p>${message}</p>`;
 
-    alertBox.innerHTML = `<span style="padding:10px">${message}</span>`;
-    alertBox.appendChild(alertButton);
-    alertButton.addEventListener('click', (e) => {
-      alertBox.remove();
-    });
-    if (timeout != null) {
-      setTimeout(() => {
-        if (alertBox) alertBox.remove();
-      }, Number(timeout))
+  const alertButton = document.createElement('button');
+  alertButton.textContent = 'OK';
+  alertButton.className = 'alert-button';
+  alertBox.appendChild(alertButton);
+  overlay.appendChild(alertBox);
+  document.body.appendChild(overlay);
+
+  function removeAlert() {
+    if (overlay && overlay.parentNode) {
+      overlay.parentNode.removeChild(overlay);
     }
-    document.body.appendChild(alertBox);
+  }
+
+  alertButton.addEventListener('click', removeAlert);
+
+  if (timeout !== null) {
+    setTimeout(removeAlert, Number(timeout));
   }
 }
 
@@ -247,7 +245,14 @@ function animateProgressBarsOnce() {
     const windowHeight = window.innerHeight;
 
     if (barTop < windowHeight - 100) {
-      const targetWidth = bar.style.width;
+      // determine the target width from a data attribute or fallback to inline style
+      let targetWidth = '';
+      if (bar.dataset.percentage) {
+        targetWidth = bar.dataset.percentage + '%';
+      } else {
+        targetWidth = bar.style.width || getComputedStyle(bar).width;
+      }
+
       bar.style.width = '0%';
 
       setTimeout(() => {
@@ -348,6 +353,7 @@ const coords = {x: 0, y: 0 };
     animateCircles();
     */
 
+
 // ========================================
 // Performance: Lazy Load Images
 // ========================================
@@ -422,6 +428,9 @@ document.head.appendChild(style);
 // Initialize all animations on load
 // ========================================
 window.addEventListener('load', () => {
+  // always start at top when the page is reloaded
+  window.scrollTo({ top: 0, left: 0 });
+
   revealOnScroll();
   animateProgressBarsOnce();
   highlightNavigation();
@@ -487,7 +496,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// 🔥 Pause on hover
+//  Pause on hover
 slider.addEventListener('mouseenter', () => {
   isPaused = true;
 });
@@ -496,7 +505,7 @@ slider.addEventListener('mouseleave', () => {
   isPaused = false;
 });
 
-// 🔥 Pause while mouse is pressed
+//  Pause while mouse is pressed
 slider.addEventListener('mousedown', () => {
   isPaused = true;
 });

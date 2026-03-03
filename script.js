@@ -122,6 +122,41 @@ window.addEventListener('scroll', highlightNavigation);
 window.addEventListener('load', highlightNavigation);
 
 // ========================================
+// Hire me Button Scroll to Contact Section
+// ========================================
+function callAlert(message) {
+  alert(message, 3000);
+  window.alert = function (message, timeout = null) {
+    const alertBox = document.createElement('div');
+    const alertButton = document.createElement('button')
+    alertButton.innerText = 'OK';
+    alertBox.classList.add('alert');
+    //alertBox.setAttribute('style', 'position: fixed; top: 100px; left: 50 %; padding: 20px; border - radius: 10px; box - shadow: 0 10px 5px 0 #00000022; display: flex; flex - direction: column; border: 1px solid #333; transform: translateX(-50 %); ');
+    //alertButton.setAttribute('style', 'border: 1px solid #333; background: white; border - radius: 5px; padding: 5px; ');
+    alertBox.setAttribute(
+      'style', 'position: fixed; top: 100px; left: 50%; padding: 20px; border-radius: 10px; box-shadow: 0 10px 5px 0 #00000022; display: flex; flex-direction: column; border: 1px solid #333; transform: translateX(-50%);'
+    );
+
+    alertButton.setAttribute(
+      'style', 'border: 1px solid #333; background: white; border-radius: 5px; padding: 5px;'
+    );
+
+    alertBox.innerHTML = `<span style="padding:10px">${message}</span>`;
+    alertBox.appendChild(alertButton);
+    alertButton.addEventListener('click', (e) => {
+      alertBox.remove();
+    });
+    if (timeout != null) {
+      setTimeout(() => {
+        if (alertBox) alertBox.remove();
+      }, Number(timeout))
+    }
+    document.body.appendChild(alertBox);
+  }
+}
+
+
+// ========================================
 // Contact Form Handling
 // ========================================
 const contactForm = document.getElementById('contactForm');
@@ -130,15 +165,17 @@ contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   // Get form values
-  const formData = {
+  let parms = {
     name: document.getElementById('name').value,
     email: document.getElementById('email').value,
+    subject: document.getElementById('subject').value,
     message: document.getElementById('message').value
   };
 
   // Log form data (in a real application, this would be sent to a server)
-  console.log('Form submitted:', formData);
+  console.log('Form submitted:', parms);
 
+  emailjs.send("service_utpnczl", "template_cc628oj", parms);
   // Show success message
   alert('Thank you for your message! I\'ll get back to you soon.');
 
@@ -274,29 +311,29 @@ projectCards.forEach(card => {
 // Uncomment the code below if you want a cursor trail effect
 
 /*
-const coords = { x: 0, y: 0 };
-const circles = document.querySelectorAll(".circle");
+const coords = {x: 0, y: 0 };
+    const circles = document.querySelectorAll(".circle");
 
-circles.forEach(function (circle) {
-  circle.x = 0;
-  circle.y = 0;
+    circles.forEach(function (circle) {
+      circle.x = 0;
+    circle.y = 0;
 });
 
-window.addEventListener("mousemove", function(e){
-  coords.x = e.clientX;
-  coords.y = e.clientY;
+    window.addEventListener("mousemove", function(e){
+      coords.x = e.clientX;
+    coords.y = e.clientY;
 });
 
-function animateCircles() {
-  let x = coords.x;
-  let y = coords.y;
-  
-  circles.forEach(function (circle, index) {
-    circle.style.left = x - 12 + "px";
+    function animateCircles() {
+      let x = coords.x;
+    let y = coords.y;
+
+    circles.forEach(function (circle, index) {
+      circle.style.left = x - 12 + "px";
     circle.style.top = y - 12 + "px";
-    
+
     circle.style.scale = (circles.length - index) / circles.length;
-    
+
     circle.x = x;
     circle.y = y;
 
@@ -304,12 +341,12 @@ function animateCircles() {
     x += (nextCircle.x - x) * 0.3;
     y += (nextCircle.y - y) * 0.3;
   });
- 
-  requestAnimationFrame(animateCircles);
+
+    requestAnimationFrame(animateCircles);
 }
 
-animateCircles();
-*/
+    animateCircles();
+    */
 
 // ========================================
 // Performance: Lazy Load Images
@@ -374,11 +411,11 @@ function activateEasterEgg() {
 // Add rainbow animation to CSS if easter egg is activated
 const style = document.createElement('style');
 style.textContent = `
-  @keyframes rainbow {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
+    @keyframes rainbow {
+      0 % { filter: hue - rotate(0deg); }
+    100% {filter: hue-rotate(360deg); }
   }
-`;
+    `;
 document.head.appendChild(style);
 
 // ========================================

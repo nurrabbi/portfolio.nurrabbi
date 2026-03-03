@@ -124,6 +124,10 @@ body {
   color: var(--color-primary);
 }
 
+.nav-brand a {
+  text-decoration: none;
+}
+
 .nav-menu {
   display: none;
   gap: 2rem;
@@ -278,6 +282,11 @@ body {
   padding: 5rem 1rem;
   overflow: hidden;
   padding-top: 8rem;
+  background-image: url('img/ProfileBG3.png');
+  background-size: auto 100%;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
 }
 
 .hero-gradient {

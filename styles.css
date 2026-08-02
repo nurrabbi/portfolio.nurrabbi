@@ -285,7 +285,6 @@ body {
 }
 
 .hero-section::after {
-  content: "";
   position: relative;
   top: 100%;
   right: 0;
@@ -299,7 +298,7 @@ body {
 .Cover-image {
   position: relative;
   align-self: start;
-  padding-top: 4.5rem;
+  /* padding-top: 4.5rem; */
 }
 
 .Cover-image {

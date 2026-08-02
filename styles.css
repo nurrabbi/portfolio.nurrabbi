@@ -288,22 +288,20 @@ body {
   position: relative;
   top: 100%;
   right: 0;
-  width: 100px; 
+  width: 100px;
   height: 100px;
   background-image: url("Profile.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right bottom;
 }
+
+
 .Cover-image {
   position: relative;
   align-self: start;
-  /* padding-top: 4.5rem; */
-}
-
-.Cover-image {
-  width: 100%;
-  aspect-ratio: 1;
+  width: 35%;
+  aspect-ratio: .95;
   object-fit: cover;
   border-radius: 1rem;
   background-color: var(--color-muted);
@@ -795,7 +793,8 @@ body {
 
 /* start progress fills collapsed so animations can work reliably */
 .progress-fill {
-  width: 0;           /* no fill until JS animates */
+  width: 0;
+  /* no fill until JS animates */
   height: 100%;
   background-color: var(--color-primary);
   border-radius: 9999px;
@@ -858,7 +857,7 @@ body {
   color: var(--color-card-foreground);
   padding: 1.5rem 2rem;
   border-radius: var(--radius);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   max-width: 90%;
   width: 400px;
   display: flex;
@@ -1455,7 +1454,7 @@ body {
    ======================================== */
 .footer {
   background-color: rgba(236, 236, 240, 0.3);
-  
+
   border-top: 1px solid var(--color-border);
 }
 

@@ -284,6 +284,32 @@ body {
   padding-top: 8rem;
 }
 
+.hero-section::after {
+  content: "";
+  position: relative;
+  top: 100%;
+  right: 0;
+  width: 100px; 
+  height: 100px;
+  background-image: url("Profile.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+.Cover-image {
+  position: relative;
+  align-self: start;
+  padding-top: 4.5rem;
+}
+
+.Cover-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 1rem;
+  background-color: var(--color-muted);
+}
+
 .hero-gradient {
   position: absolute;
   inset: 0;
@@ -444,6 +470,8 @@ body {
   margin: 0 auto;
   animation: pulse 2s infinite;
 }
+
+
 
 /* ========================================
    Sections
@@ -938,6 +966,31 @@ body {
 }
 
 .overlay-btn:hover {
+  transform: scale(1.1);
+}
+
+.overlay-btn-figma {
+  width: 45px;
+  height: 45px;
+  padding: 0.75rem;
+  background-color: white;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-btn-figma img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  justify-content: center;
+}
+
+.overlay-btn-figma:hover {
   transform: scale(1.1);
 }
 

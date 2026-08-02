@@ -1,0 +1,11 @@
+{
+  "name": "portfolio-nurrabbi",
+  "version": "1.0.0",
+  "description": "Portfolio website for Nur Hossain Rabbi",
+  "scripts": {
+    "postinstall": "echo 'Dependencies installed successfully'"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^1.0.12"
+  }
+}
